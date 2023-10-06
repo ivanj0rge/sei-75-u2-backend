@@ -15,7 +15,10 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json())
 
-mongoose.connect(process.env.DATABASE_URL)
+mongoose.connect(process.env.DATABASE_URL,{
+useNewUrlParser: true,
+useUnifiedTopology: true,
+})
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {console.log(`Listening on port: ${port}`)})
@@ -25,3 +28,4 @@ app.use('/students', studentsRoute)
 app.use('/sessions', sessionsRoute)
 app.use('/events', eventsRoute)
 app.use('/notifications', notificationsRoute)
+

@@ -1,4 +1,16 @@
 import express from "express"
+import mongoose from "mongoose"
+
+const eventSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    date: { type: Date, required: true },
+    attendance: [
+      {
+        student: { type: mongoose.Schema.Types.ObjectId, ref: 'Student' },
+      }
+    ]
+  })
+
 const router = express.Router()
 
 router.get('/', (req, res) => {

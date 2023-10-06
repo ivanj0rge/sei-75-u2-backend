@@ -1,2 +1,10 @@
 
-PUT http://localhost:3000/sessions
+POST http://localhost:3000/instructors
+Content-Type: application/json
+
+{
+    "name": "Ivan de Carvalho",
+    "email": "ivandcarvalho29@gmail.com",
+    "phone": "07518703003",
+    "isAdmin": true
+}

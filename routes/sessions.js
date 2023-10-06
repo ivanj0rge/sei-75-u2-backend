@@ -1,4 +1,15 @@
 import express from "express"
+import mongoose from "mongoose"
+
+const sessionSchema = new mongoose.Schema({
+    date: { type: Date, required: true },
+    attendance: [
+      {
+        student: { type: mongoose.Schema.Types.ObjectId, ref: 'Student' },
+      }
+    ]
+  })
+
 const router = express.Router()
 
 router.get('/', (req, res) => {
