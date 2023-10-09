@@ -1,7 +1,7 @@
 import express from "express"
 import mongoose from "mongoose"
 
-const router = express.Router()
+const instructorsRoute = express.Router()
 
 const InstructorSchema = new mongoose.Schema({
     name: { type: String, required: true, unique: true },
@@ -10,9 +10,9 @@ const InstructorSchema = new mongoose.Schema({
     isAdmin: { type: Boolean, default: false }
 })
 
+const Instructor = mongoose.model('Instructor', InstructorSchema);
 
-
-router.get('/', async (req, res) => {
+instructorsRoute.get('/', async (req, res) => {
     try {
         const instructors = await Instructor.find()
         res.status(200).json({ data: instructors })
@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
     };
 })
 
-router.post('/', async (req, res) => {
+instructorsRoute.post('/', async (req, res) => {
     try {
         const { name, email, phone, isAdmin } = req.body
         const newInstructor = new Instructor({ name, email, phone, isAdmin })
@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
     }
 })
 
-router.put('/:instructorId', async (req, res) => {
+instructorsRoute.put('/:id', async (req, res) => {
     try {
         const { instructorId } = req.params
         const { name, email, phone, isAdmin } = req.body
@@ -50,7 +50,7 @@ router.put('/:instructorId', async (req, res) => {
     }
 })
 
-router.delete('/:instructorId', async (req, res) => {
+instructorsRoute.delete('/:id', async (req, res) => {
     try {
         const { instructorId } = req.params
         const deletedInstructor = await Instructor.findByIdAndDelete(instructorId)
@@ -64,4 +64,4 @@ router.delete('/:instructorId', async (req, res) => {
     }
 })
 
-export default router
+export default instructorsRoute
