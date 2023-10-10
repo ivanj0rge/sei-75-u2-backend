@@ -21,12 +21,18 @@ instructorsRoute.get('/', async (req, res) => {
     };
 })
 
+instructorsRoute.get(`/:id`, async (req, res) => {
+    const id = req.params.id
+    const instructor = await Instructor.findById(id)
+    res.json(instructor)
+  })
+
 instructorsRoute.post('/', async (req, res) => {
     try {
         const { name, email, phone, isAdmin } = req.body
         const newInstructor = new Instructor({ name, email, phone, isAdmin })
         const savedInstructor = await newInstructor.save()
-        res.status(201).json({ data: savedInstructor })
+        res.status(200).json({ data: savedInstructor })
     } catch (error) {
         res.status(400).json({ error: 'Unable to create instructor' })
     }
@@ -34,10 +40,10 @@ instructorsRoute.post('/', async (req, res) => {
 
 instructorsRoute.put('/:id', async (req, res) => {
     try {
-        const { instructorId } = req.params
+        const instructorId = req.params.id
         const { name, email, phone, isAdmin } = req.body
 
-        const updatedInstructor = await Instructor.findByIdAnUpdate(
+        const updatedInstructor = await Instructor.findByIdAndUpdate(
             instructorId, { name, email, phone, isAdmin },
             { new: true }
         )

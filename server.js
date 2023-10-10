@@ -8,6 +8,8 @@ import studentsRoute from './routes/students.js'
 import sessionRoute from './routes/sessions.js'
 import eventsRoute from './routes/events.js'
 import notificationsRoute from './routes/notifications.js'
+import loginRoute from './routes/login.js'
+
 
 
 
@@ -29,4 +31,5 @@ app.use('/students', studentsRoute)
 app.use('/sessions', sessionRoute)
 app.use('/events', eventsRoute)
 app.use('/notifications', notificationsRoute)
+app.use('/login', loginRoute)
 

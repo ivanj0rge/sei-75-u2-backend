@@ -1,11 +1,10 @@
 
-PUT http://localhost:3000/students/6523e3e5a28c81196f90bdeb
+POST http://localhost:3000/login
 Content-Type: application/json
 
 {
-    "name": "Ivan de Carvalho",
-    "email": "ivandcarvalho29@gmail.com",
-    "phone": "07518703003",
-    "dob": "1995-08-20",
-    "graduation": "red"
+    "userEmail": "ivandcarvalho29@gmail.com",
+    {
+    "lastLogin": 2023-10-10
+    }
 }

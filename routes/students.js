@@ -1,5 +1,6 @@
 import express from "express"
 import mongoose from "mongoose"
+import moment from "moment"
 
 const studentsRoute = express.Router()
 
@@ -21,6 +22,9 @@ StudentSchema.virtual('isSenior').get(function () {
   const age = currentDate.getFullYear() - this.dob.getFullYear()
   return age >= 15;
 })
+StudentSchema.set('toJSON', {
+  virtuals: true
+})
 
 const Student = mongoose.model('Student', StudentSchema);
 
@@ -28,10 +32,30 @@ const Student = mongoose.model('Student', StudentSchema);
 studentsRoute.get('/', async (req, res) => {
   try {
     const students = await Student.find();
-    res.json(students);
+    const formattedDob = students.map(student => ({
+      id: student._id,
+      name: student.name,
+      email: student.email,
+      phone: student.phone,
+      dob: moment(student.dob).format('DD-MM-YYYY'),
+      graduation: student.graduation,
+      attendance: [
+        {
+          date: student.attendance.date,
+          attended: student.attendance.attended
+        }
+      ]
+    }))
+    res.json(formattedDob);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+})
+
+studentsRoute.get(`/:id`, async (req, res) => {
+  const id = req.params.id
+  const student = await Student.findById(id)
+  res.json(student)
 })
 
 studentsRoute.post('/', async (req, res) => {
