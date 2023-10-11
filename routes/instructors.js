@@ -58,7 +58,7 @@ instructorsRoute.put('/:id', async (req, res) => {
 
 instructorsRoute.delete('/:id', async (req, res) => {
     try {
-        const { instructorId } = req.params
+        const instructorId = req.params.id
         const deletedInstructor = await Instructor.findByIdAndDelete(instructorId)
 
         if (!deletedInstructor) {

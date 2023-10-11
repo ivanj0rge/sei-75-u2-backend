@@ -17,14 +17,8 @@ const StudentSchema = new mongoose.Schema({
     }
   ]
 })
-StudentSchema.virtual('isSenior').get(function () {
-  const currentDate = new Date()
-  const age = currentDate.getFullYear() - this.dob.getFullYear()
-  return age >= 15;
-})
-StudentSchema.set('toJSON', {
-  virtuals: true
-})
+
+
 
 const Student = mongoose.model('Student', StudentSchema);
 
@@ -70,7 +64,7 @@ studentsRoute.post('/', async (req, res) => {
     });
 
     const savedStudent = await newStudent.save();
-    res.status(201).json(savedStudent);
+    res.status(200).json(savedStudent);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
