@@ -4,7 +4,7 @@ import { Student } from './students.js'
 // import cron from "node-cron"
 
 const SessionSchema = new mongoose.Schema({
-  date: { type: Date, required: true },
+  date: { type: String, required: true },
   attendance: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Student' }]
 })
 const Session = mongoose.model('Session', SessionSchema);
@@ -12,8 +12,10 @@ const Session = mongoose.model('Session', SessionSchema);
 const sessionRoute = express.Router()
 
 sessionRoute.get('/', async (req, res) => {
+  console.log(req.query);
   try {
-    const sessions = await Session.find()
+    const sessions = await Session.findOne()
+    console.log(sessions);
     res.json(sessions)
   } catch (error) {
     res.status(500).json({ error: error.message })
