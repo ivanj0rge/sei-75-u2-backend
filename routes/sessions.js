@@ -12,10 +12,8 @@ const Session = mongoose.model('Session', SessionSchema);
 const sessionRoute = express.Router()
 
 sessionRoute.get('/', async (req, res) => {
-  console.log(req.query);
   try {
-    const sessions = await Session.findOne()
-    console.log(sessions);
+    const sessions = await Session.find()
     res.json(sessions)
   } catch (error) {
     res.status(500).json({ error: error.message })

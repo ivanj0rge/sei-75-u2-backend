@@ -27,7 +27,7 @@ studentsRoute.get('/', async (req, res) => {
       phone: student.phone,
       dob: moment(student.dob).format('DD-MM-YYYY'),
       graduation: student.graduation,
-      attendance: false,
+      attendance: student.attendance,
       sessionsAttended: student.sessionsAttended
     }))
     res.json(formattedDob);
@@ -61,6 +61,26 @@ studentsRoute.post('/', async (req, res) => {
   }
 })
 
+studentsRoute.post('/:id/attendance', async (req, res) => {
+  try {
+    const studentId = req.params.id;
+    const student = await Student.findById(studentId);
+
+    if (!student) {
+      return res.status(404).json({ error: 'Student not found' });
+    }
+
+    const sessionID = req.body.sessionID;
+    
+    student.sessionsAttended.push(sessionID);
+    await student.save();
+
+    res.json({ message: 'Attendance record updated successfully' });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
 studentsRoute.get('/:id/attendance', async (req, res) => {
   try {
     const studentId = req.params.id;
@@ -85,6 +105,7 @@ studentsRoute.put('/:id', async (req, res) => {
       phone: req.body.phone,
       dob: req.body.dob,
       graduation: req.body.graduation,
+      attendance: req.body.attendance,
       sessionsAttended: req.body.sessionsAttended
 
     };
