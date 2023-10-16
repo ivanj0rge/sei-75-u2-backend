@@ -32,4 +32,5 @@ api.use('/notifications', notificationsRoute)
 api.use('/login', loginRoute)
 
 api.use("/api/", router);
+
 export const handler = serverless(api);
