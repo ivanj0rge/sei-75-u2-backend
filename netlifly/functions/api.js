@@ -16,7 +16,7 @@ const api = express();
 api.use(cors());
 api.use(bodyParser.json())
 
-const router = Router();
+const router = express.Router();
 router.get("/hello", (req, res) => res.send("Hello World!"))
 
 mongoose.connect(process.env.DATABASE_URL,{
@@ -31,6 +31,7 @@ api.use('/events', eventsRoute)
 api.use('/notifications', notificationsRoute)
 api.use('/login', loginRoute)
 
-api.use("/api/", router);
+api.use("/netlify/functions/api/", router);
 
-export const handler = serverless(api);
+const handler = serverless(api)
+export default handler
