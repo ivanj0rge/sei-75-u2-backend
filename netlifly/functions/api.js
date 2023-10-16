@@ -1,9 +1,9 @@
-import express, { Router } from "express";
-import serverless from "serverless-http";
 import 'dotenv/config'
+import express, { Router } from "express"
 import cors from "cors"
 import bodyParser from "body-parser"
 import mongoose from "mongoose"
+import serverless from "serverless-http"
 import instructorsRoute from '../routes/instructors.js'
 import studentsRoute from './routes/students.js'
 import sessionRoute from './routes/sessions.js'
@@ -13,11 +13,11 @@ import loginRoute from './routes/login.js'
 
 const api = express();
 
-const router = Router();
-router.get("/hello", (req, res) => res.send("Hello World!"))
-
 api.use(cors());
 api.use(bodyParser.json())
+
+const router = Router();
+router.get("/hello", (req, res) => res.send("Hello World!"))
 
 mongoose.connect(process.env.DATABASE_URL,{
 useNewUrlParser: true,
