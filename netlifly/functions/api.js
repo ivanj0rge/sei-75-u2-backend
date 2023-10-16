@@ -31,7 +31,7 @@ api.use('/events', eventsRoute)
 api.use('/notifications', notificationsRoute)
 api.use('/login', loginRoute)
 
-api.use("/netlify/functions/api/", router);
+api.use("/api/", router);
 
 const handler = serverless(api)
 export default handler
