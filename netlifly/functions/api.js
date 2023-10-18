@@ -1,8 +1,8 @@
-import 'dotenv/config'
 import express, { Router } from "express"
+import serverless from "serverless-http"
+import 'dotenv/config'
 import cors from "cors"
 import bodyParser from "body-parser"
-import serverless from "serverless-http"
 // import mongoose from "mongoose"
 // import instructorsRoute from '../routes/instructors.js'
 // import studentsRoute from './routes/students.js'
@@ -14,7 +14,7 @@ import serverless from "serverless-http"
 const api = express();
 
 const router = Router();
-router.get("/hello", (req, res) => res.send("Hello World!"))
+router.get("/hello", (req, res) => res.json("Hello World!"))
 
 api.use(cors());
 api.use(bodyParser.json())
