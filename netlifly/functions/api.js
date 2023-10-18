@@ -14,7 +14,7 @@ import bodyParser from "body-parser"
 const api = express();
 
 const router = Router();
-router.get("/hello", (req, res) => res.json("Hello World!"))
+router.get("/hello", (req, res) => res.send("Hello World!"))
 
 api.use(cors());
 api.use(bodyParser.json())
