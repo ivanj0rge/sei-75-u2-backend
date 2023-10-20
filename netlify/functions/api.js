@@ -4,7 +4,7 @@ import 'dotenv/config'
 import cors from "cors"
 import bodyParser from "body-parser"
 import mongoose from "mongoose"
-import instructorsRoute from '../routes/instructors.js'
+import instructorsRoute from '../../routes/instructors.js'
 import studentsRoute from '../../routes/students.js'
 import sessionRoute from '../../routes/sessions.js'
 import eventsRoute from '../../routes/events.js'
