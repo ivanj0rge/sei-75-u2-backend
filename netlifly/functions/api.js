@@ -34,5 +34,5 @@ api.use('/login', loginRoute)
 
 api.use("/api/", router);
 
-const handler = serverless(api)
-export default handler
+export const handler = serverless(api)
+ 
