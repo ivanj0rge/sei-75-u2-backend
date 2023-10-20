@@ -25,12 +25,12 @@ useNewUrlParser: true,
 useUnifiedTopology: true,
 })
 
-api.use('/instructors', instructorsRoute)
-api.use('/students', studentsRoute)
-api.use('/sessions', sessionRoute)
-api.use('/events', eventsRoute)
-api.use('/notifications', notificationsRoute)
-api.use('/login', loginRoute)
+router.use('/instructors', instructorsRoute)
+router.use('/students', studentsRoute)
+router.use('/sessions', sessionRoute)
+router.use('/events', eventsRoute)
+router.use('/notifications', notificationsRoute)
+router.use('/login', loginRoute)
 
 api.use("/api/", router);
 
