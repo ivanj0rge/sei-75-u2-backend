@@ -5,11 +5,11 @@ import cors from "cors"
 import bodyParser from "body-parser"
 import mongoose from "mongoose"
 import instructorsRoute from '../routes/instructors.js'
-import studentsRoute from './routes/students.js'
-import sessionRoute from './routes/sessions.js'
-import eventsRoute from './routes/events.js'
-import notificationsRoute from './routes/notifications.js'
-import loginRoute from './routes/login.js'
+import studentsRoute from '../../routes/students.js'
+import sessionRoute from '../../routes/sessions.js'
+import eventsRoute from '../../routes/events.js'
+import notificationsRoute from '../../routes/notifications.js'
+import loginRoute from '../../routes/login.js'
 
 const api = express();
 
